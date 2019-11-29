@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {NbMenuItem} from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'nebular-bootcamp';
+  items: NbMenuItem[];
+
+  constructor() {
+    this.items = [
+      {
+        title: 'Home',
+        icon: 'person-outline',
+        link: 'home',
+      },
+    ];
+  }
 }
