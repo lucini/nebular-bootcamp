@@ -27,12 +27,16 @@ export class ProdutoListComponent implements OnInit {
       position: 'right'
     },
     add: {
-      addButtonContent: 'Novo'
+      addButtonContent: 'Novo',
+      createConfirm: true,
+      createButtonContent: 'Salvar',
+      cancelButtonContent: 'Cancelar'
     },
     edit: {
       editButtonContent: 'Editar',
-      saveButtonContent: 'Salvar',
-      cancelButtonContent: 'Cancelar'
+      saveButtonContent: 'Atualizar',
+      cancelButtonContent: 'Cancelar',
+      confirmSave: true
     },
     delete: {
       deleteButtonContent: 'Excluir',
@@ -49,18 +53,25 @@ export class ProdutoListComponent implements OnInit {
     this.loadList();
   }
 
-  private loadList() {
-    this.produtoService.findAll().subscribe(val => this.source = val);
-  }
-
   deletar(event): void {
     const produto = event.data as Produto;
-    // const index = this.source.findIndex(val => val == produto);
-    // this.source.splice(index, 1);
 
     this.produtoService.delete(produto.id).subscribe(() => {
       this.loadList();
     });
 
+  }
+
+  salvar(event): void {
+    const produto = event.newData as Produto;
+    console.log(produto);
+
+    this.produtoService.save(produto).subscribe(() => {
+      this.loadList();
+    });
+  }
+
+  private loadList() {
+    this.produtoService.findAll().subscribe(val => this.source = val);
   }
 }
