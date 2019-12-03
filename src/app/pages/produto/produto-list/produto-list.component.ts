@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Produto} from '../../../model/produto';
 import {ProdutoService} from '../../../service/produto.service';
+import {Settings} from "../../../model/settings";
 
 @Component({
   selector: 'app-produto-list',
@@ -8,7 +9,7 @@ import {ProdutoService} from '../../../service/produto.service';
   styleUrls: ['./produto-list.component.scss']
 })
 export class ProdutoListComponent implements OnInit {
-  settings = {
+  settings: Settings = {
     noDataMessage: 'Não há registros',
     columns: {
       id: {
